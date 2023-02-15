@@ -15,24 +15,68 @@ const StyledCheckbox = styled.input`
     font-weight: 400;
 `;
 
+const StyledFormControl = styled.input`
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
 
+    &:focus {
+        z-index: 2;
+    }
+`;
+
+
+const InputEmail = styled.input.attrs({ type: 'email' })`
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+
+
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+
+  &:focus {
+      z-index: 2;
+  }
+}
+`;
+const InputPassword = styled.input.attrs({ type: 'password' })`
+margin-bottom: 10px;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
+
+  
+position: relative;
+box-sizing: border-box;
+height: auto;
+padding: 10px;
+font-size: 16px;
+
+&:focus {
+    z-index: 2;
+}
+}
+`;
 const Login = () => {
     return (
-
         <StyledFormSignIn>
-            <img className="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
             <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
             <label htmlFor="inputEmail" className="sr-only">Email address</label>
-            <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus />
+            <InputEmail type="email" id="inputEmail"  placeholder="Email address" required autoFocus />
             <label htmlFor="inputPassword" className="sr-only">Password</label>
-            <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
+            <InputPassword type="password" id="inputPassword"  placeholder="Password" required />
             <div className="checkbox mb-3">
                 <label>
                     <StyledCheckbox type="checkbox" value="remember-me" /> Remember me
                 </label>
             </div>
-            <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <p className="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+            <button className="btn btn-sm btn-primary btn-block" type="submit">Sign in</button>
+
         </StyledFormSignIn>
 
 
