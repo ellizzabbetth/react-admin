@@ -1,40 +1,115 @@
-import React from 'react';
+import React, { Component, SyntheticEvent } from 'react';
+import '../Login.css';
+import axios from 'axios';
 import styled, { css } from 'styled-components'
+import { Navigate } from 'react-router-dom';
 
-const StyledFormSignIn = styled.form`
-width: 100%;
-max-width: 330px;
-padding: 15px;
-margin: auto;
+class Register extends Component {
+    first_name = '';
+    last_name = '';
+    email = '';
+    password = '';
+    password_confirm = '';
+    state = {
+        redirect: false
+    };
+
+    submit = async (e: SyntheticEvent) => {
+        e.preventDefault();
+
+        await axios.post('register', {
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            password: this.password,
+            password_confirm: this.password_confirm,
+        });
+
+        this.setState({
+            redirect: true
+        });
+    }
+    render() {
+        if (this.state.redirect) {
+            return <Navigate to={'/login'} />;
+        }
+        return (
+            <StyledMain>
+                 <form onSubmit={this.submit}>
+                    <h1 className="h3 mb-3 fw-normal">Please register</h1>
+
+                    <input className="form-control" placeholder="First Name" required
+                           onChange={e => this.first_name = e.target.value}
+                    />
+
+                    <input className="form-control" placeholder="Last Name" required
+                           onChange={e => this.last_name = e.target.value}
+                    />
+
+                    <input type="email" className="form-control" placeholder="Email" required
+                           onChange={e => this.email = e.target.value}
+                    />
+
+                    <input type="password" className="form-control" placeholder="Password" required
+                           onChange={e => this.password = e.target.value}
+                    />
+
+                    <input type="password" className="form-control" placeholder="Password Confirm" required
+                           onChange={e => this.password_confirm = e.target.value}
+                    />
+
+                    <button className="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+                </form>
+            </StyledMain>
+        )
+    }
+}
+
+export default Register;
+
+const StyledMain = styled.main`
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 `;
 
 const StyledCheckbox = styled.input`
     font-weight: 400;
 `;
-const Register = () => {
-    return (
-        <StyledFormSignIn>
 
-        <h1 className="h3 mb-3 font-weight-normal">Please register</h1>
-        <label htmlFor="inputFirstName" className="sr-only">First Name</label>
-        <input  id="inputFirstName" className="form-control" placeholder="First Name" required autoFocus />
-        <label htmlFor="inputLastName" className="sr-only">Last Name</label>
-        <input id="inputLastName" className="form-control" placeholder="Last Name" required autoFocus />
-        <label htmlFor="inputEmail" className="sr-only">Email address</label>
-        <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus />
-        <label htmlFor="inputPassword" className="sr-only">Password</label>
-        <input type="password" id="inputPassword" className="form-control" placeholder="Password" required />
-        <label htmlFor="inputPasswordConfirm" className="sr-only">Password</label>
-        <input type="password" id="inputPasswordConfirm" className="form-control" placeholder="Password Confirm" required />
-        <div className="checkbox mb-3">
-            <label>
-                <StyledCheckbox type="checkbox" value="remember-me" /> Remember me
-            </label>
-        </div>
-        <button className="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
-        <p className="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
-    </StyledFormSignIn>
-    )
+const StyledFormControl = styled.input`
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+
+    &:focus {
+        z-index: 2;
+    }
+`;
+
+
+const InputEmail = styled(StyledFormControl).attrs({ type: 'email' })`
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+
+
+  &:focus {
+      z-index: 2;
+  }
 }
+`;
+const InputPassword = styled(StyledFormControl).attrs({ type: 'password' })`
+margin-bottom: 10px;
+border-top-left-radius: 0;
+border-top-right-radius: 0;
 
-export default Register;
+
+&:focus {
+    z-index: 2;
+}
+}
+`;

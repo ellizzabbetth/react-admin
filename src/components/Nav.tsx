@@ -1,42 +1,30 @@
 import React from 'react';
+import { IUser }  from '../../models/user';
+import {  Link } from 'react-router-dom';
 
-const Nav = () => {
+import axios from "axios";
 
-    return (
-        <header>
-        <meta charSet="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-        <meta name="description" content=""/>
-        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"/>
-        <meta name="generator" content="Jekyll v3.8.5"/>
-        <title>Dashboard Template · Bootstrap</title>
+const Nav = (props: { user: IUser | null}) => {
+   console.log(props.user)
+   const logout = async () => {
+      await axios.post('logout', {});
+  }
+  
+   return (
+    <nav className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a className="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Company name</a>
+        <ul className="my-2 my-md-0 mr-md-3">
+            <Link to="/profile"
+                  className="p-2 text-white text-decoration-none">{props.user?.first_name} {props.user?.last_name}</Link>
+            <Link to="/login" className="p-2 text-white text-decoration-none"
+                  onClick={logout}
+            >Sign Out</Link>
+        </ul>
+    </nav>
+ );
 
-         {/*<link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/dashboard/">
 
-        <!-- Bootstrap core CSS -->
-    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
- */}
-
-        {/* <style>
-          .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-          }
-
-          @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-              font-size: 3.5rem;
-            }
-          }
-        </style>
-        <!-- Custom styles for this template -->
-        <link href="dashboard.css" rel="stylesheet"> */}
-      </header>
-    )
+      
 }
 
 export default Nav;
