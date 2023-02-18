@@ -5,6 +5,7 @@ import User from '../pages/User';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import UserContext from '../context/UserContext';
+import { RedirectToUsers } from '../components/RedirectToUsers';
 
 const Routes = () => {
 
@@ -12,7 +13,8 @@ const Routes = () => {
     return (  
         <UserContext>
             <MyRoutes>
-                <Route path={'/'} element={<User />} />
+                <Route path={'/'} element={<RedirectToUsers />} />
+                <Route path={'/users'} element={<User />} />
                 <Route path={'/login'} element={<Login />} />
                 <Route path={'/register'} element={<Register />} />
             </MyRoutes>

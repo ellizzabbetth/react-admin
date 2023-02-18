@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 const Menu = () => {
 
@@ -7,10 +8,11 @@ const Menu = () => {
         <div className="sidebar-sticky">
           <ul className="nav flex-column">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              <NavLink to={'/users'} 
+               className="nav-link active" >
                 <span data-feather="home"></span>
-                Dashboard <span className="sr-only">(current)</span>
-              </a>
+                Users <span className="sr-only">(current)</span>
+              </NavLink>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
