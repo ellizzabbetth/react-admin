@@ -60,12 +60,13 @@ border-top-right-radius: 0;
 
 const Login = () => {
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('')
-    const [redirect, setRedirect] = useState(false)
+    const [password, setPassword] = useState('');
+    const [redirect, setRedirect] = useState(false);
     let navigate = useNavigate();
 
 
     const submit = async (e: SyntheticEvent) => {
+        console.log('here')
         e.preventDefault();
         await axios.post('login', {
             email,
@@ -76,6 +77,8 @@ const Login = () => {
       
         if (redirect) {
             return navigate("/");
+        } else {
+            console.log('failerd')
         }
     }
 
@@ -88,13 +91,15 @@ const Login = () => {
             onChange={e => setEmail(e.target.value)} placeholder="Email address" required autoFocus />
             <label htmlFor="inputPassword" className="sr-only">Password</label>
             <InputPassword type="password" id="inputPassword"  
-            onChange={e => setPassword(e.target.value)} placeholder="Password" required />
+            onChange={e => setPassword(e.target.value)} placeholder="Password1"  autoComplete="true" required />
             <div className="checkbox mb-3">
                 <label>
                     <StyledCheckbox type="checkbox" value="remember-me" /> Remember me
                 </label>
             </div>
             <button className="btn btn-sm btn-primary btn-block" type="submit">Sign in</button>
+            {/* <div>Forgot password? One Time Password</div>
+            <a href="#" className="stretched-link text-danger">Stretched link will not work here, because <code>position: relative</code> is added to the link</a> */}
             </form>
         </StyledMain>
     )

@@ -10,6 +10,7 @@ class Register extends Component {
     email = '';
     password = '';
     password_confirm = '';
+    //phone_number = '';
     state = {
         redirect: false
     };
@@ -57,6 +58,10 @@ class Register extends Component {
                     <input type="password" className="form-control" placeholder="Password Confirm" required
                            onChange={e => this.password_confirm = e.target.value}
                     />
+
+                    {/* <input type="tel" className="form-control" placeholder="Phone Number" required
+                           onChange={e => this.phone_number = e.target.value}
+                    /> */}
 
                     <button className="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
                 </form>

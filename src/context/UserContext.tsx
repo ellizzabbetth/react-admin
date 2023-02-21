@@ -1,5 +1,5 @@
 import { createContext, useState, ReactNode } from "react";
-import { IUser, UserContextType } from "../../models/user";
+import { IUser, UserContextType } from "../models/user";
 import React from 'react';
 
 //import { UserContextType } from '../@types/user';

@@ -4,7 +4,7 @@ import Menu from './Menu'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
 import User from '../pages/User'
-import { IUser } from '../../models/user'
+import { IUser } from '../models/user'
 
 const Layout = (props: any) => {
     const [redirect, setRedirect] =  useState(false)
