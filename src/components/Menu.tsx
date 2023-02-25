@@ -15,6 +15,13 @@ const Menu = () => {
               </NavLink>
             </li>
             <li className="nav-item">
+              <NavLink to={'/products'} 
+               className="nav-link active" >
+                <span data-feather="home"></span>
+                Products <span className="sr-only">(current)</span>
+              </NavLink>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="#">
                 <span data-feather="file"></span>
                 Orders

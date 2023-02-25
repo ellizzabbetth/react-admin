@@ -5,7 +5,7 @@ import Layout from "../components/Layout";
 import {Link} from "../models/link";
 import { IUser } from "../models/user";
 
-const Link = (props: any) => {
+const Links = (props: any) => {
 
   const [links, setLinks] = useState<Link[]>([]);
   const [users, setUsers] = useState<IUser[]>([])
@@ -74,4 +74,4 @@ const Link = (props: any) => {
   )
 };
 
-export default Link;
+export default Links;

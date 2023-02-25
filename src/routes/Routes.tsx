@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import Link from '../pages/Link';
 import UserContext from '../context/UserContext';
 import { RedirectToUsers } from '../components/RedirectToUsers';
+import Products from '../pages/products/Products';
 
 
 const Routes = () => {
@@ -20,6 +21,7 @@ const Routes = () => {
                 <Route path={'/login'} element={<Login />} />
                 <Route path={'/users/:id/links'} element={<Link />} />
                 <Route path={'/register'} element={<Register />} />
+                <Route path={'/products'} element={<Products />} />
             </MyRoutes>
         </UserContext>
     );

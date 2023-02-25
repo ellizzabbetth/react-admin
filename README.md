@@ -51,3 +51,6 @@ TODO
 
 Remember Me
 https://www.twilio.com/docs/sms/tutorials/server-notifications-python-django
+
+
+shortcut: rfc
