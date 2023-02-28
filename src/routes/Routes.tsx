@@ -9,6 +9,7 @@ import UserContext from '../context/UserContext';
 import { RedirectToUsers } from '../components/RedirectToUsers';
 import Products from '../pages/products/Products';
 import ProductForm from '../pages/products/ProductForm';
+import Orders from '../pages/Orders';
 
 
 const Routes = () => {
@@ -25,6 +26,7 @@ const Routes = () => {
                 <Route path={'/products'} element={<Products />} />
                 <Route path={'/products/create'} element={<ProductForm />} />
                 <Route path={'/products/:id/edit'} element={<ProductForm />} />
+                <Route path={'/orders'} element={<Orders />} />
             </MyRoutes>
         </UserContext>
     );
