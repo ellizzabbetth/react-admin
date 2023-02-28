@@ -3,8 +3,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react"
 import Layout from "../../components/Layout";
 import { Product } from "../../models/product";
+import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import {  Button, Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow } from '@material-ui/core';
 import TablePaginationWrapper from "../../components/TablePaginationWrapper";
+import { useParams } from "react-router-dom";
 const Products = () => {
   const [products, setProducts] =useState<Product[]>([])
   const [page, setPage] = useState(0)
@@ -69,10 +71,18 @@ const Products = () => {
                 <TableCell>{product.description}</TableCell>
                 <TableCell>{product.price}</TableCell>
                 <TableCell>
+                  <ToggleButtonGroup>
+                  <Button variant="contained" 
+                  color="primary"
+                  href={`/products/${product.id}/edit`}
+                  >Edit</Button>
+           
                   <Button variant="contained" color="secondary"
                   onClick={()=> del(product.id)}
                   >Delete</Button>
-                </TableCell>
+                  </ToggleButtonGroup>
+                  </TableCell>  
+                  
               </TableRow>
             )
           })}
