@@ -8,6 +8,7 @@ import Link from '../pages/Link';
 import UserContext from '../context/UserContext';
 import { RedirectToUsers } from '../components/RedirectToUsers';
 import Products from '../pages/products/Products';
+import ProductForm from '../pages/products/ProductForm';
 
 
 const Routes = () => {
@@ -22,6 +23,8 @@ const Routes = () => {
                 <Route path={'/users/:id/links'} element={<Link />} />
                 <Route path={'/register'} element={<Register />} />
                 <Route path={'/products'} element={<Products />} />
+                <Route path={'/products/create'} element={<ProductForm />} />
+                <Route path={'/products/:id/edit'} element={<ProductForm />} />
             </MyRoutes>
         </UserContext>
     );

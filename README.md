@@ -54,3 +54,7 @@ https://www.twilio.com/docs/sms/tutorials/server-notifications-python-django
 
 
 shortcut: rfc
+
+
+ npm i @material-ui/lab --legacy-peer-deps
+npm WARN deprecated @material-ui/lab@4.0.0-alpha.61: Material UI v4 doesn't receive active development since September 2021. See the guide https://mui.com/material-ui/migration/migration-v4/ to upgrade to v5.

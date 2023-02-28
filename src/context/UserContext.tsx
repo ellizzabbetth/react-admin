@@ -11,7 +11,7 @@ interface Props {
 export const UserContext = createContext<UserContextType | null>(null);
 
 const UserContextProvider:  React.FC<Props>  = ({ children }) => {
-
+    console.log('user context')
     const [users, setUsers] = useState<IUser[]>([
         {
             id: 1,
