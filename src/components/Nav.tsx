@@ -1,11 +1,12 @@
 import React from 'react';
 import { IUser }  from '../models/user';
 import {  Link } from 'react-router-dom';
-
+import {connect} from "react-redux";
 import axios from "axios";
 
+
 const Nav = (props: { user: IUser | null}) => {
-   console.log(props.user)
+
    const logout = async () => {
       await axios.post('logout', {});
   }
@@ -22,9 +23,12 @@ const Nav = (props: { user: IUser | null}) => {
         </ul>
     </nav>
  );
-
-
-      
 }
 
-export default Nav;
+export default connect(
+    (state: { user: IUser }) => {
+        return {
+            user: state.user
+        };
+    }
+)(Nav);

@@ -1,27 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { Dispatch, useEffect, useState } from 'react'
 import Nav from './Nav'
 import Menu from './Menu'
 import axios from 'axios'
 import { Navigate } from 'react-router-dom'
 import User from '../pages/User'
 import { IUser } from '../models/user'
+import {connect} from 'react-redux';
+import { setUser } from '../redux/actions/setUserAction'
 
 const Layout = (props: any) => {
     const [redirect, setRedirect] =  useState(false)
-    const [user, setUser] = useState<IUser | null>( null);
+    //const [user, setUser] = useState<IUser | null>( null);
 
     useEffect( () => {
         (
             async () => {
                 try {
                     const {data} = await axios.get('user', {withCredentials: true});
-                    console.log({data})
-                    setUser(data)
+                   // console.log({data})
+                  // setUser(data)
+                    props.setUser(data)
                 } catch (e) {
                     setRedirect(true)
                 }
             }
         )();
+        console.log('i fire once');
     }, [])
 
     if (redirect) {
@@ -30,19 +34,10 @@ const Layout = (props: any) => {
 
     return (
         <div>
-           
-            <Nav user={user}/>
+            <Nav/>
+            {/* <Nav user={user}/> */}
 
-            <div>
-                {/* <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-                    <a className="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-                    <input className="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" />
-                    <ul className="navbar-nav px-3">
-                        <li className="nav-item text-nowrap">
-                            <a className="nav-link" href="#">Sign out</a>
-                        </li>
-                    </ul>
-                </nav> */}
+
 
                 <div className="container-fluid">
                     <div className="row">
@@ -63,9 +58,9 @@ const Layout = (props: any) => {
                                 </div>
                             </div>
 
-                            <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+                            {/* <canvas className="my-4 w-100" id="myChart" width="900" height="380"></canvas> */}
 
-                            <h2>Section title</h2>
+                            
                             <div className="table-responsive">
                                 {props.children}
                             </div>
@@ -73,8 +68,21 @@ const Layout = (props: any) => {
                     </div></div>
             </div>
 
-        </div>
+
     )
 }
 
-export default Layout;
+const mapStateToProps = (state: { user: IUser }) => {
+    return {
+        user: state.user
+    };
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<any>) => {
+    return {
+        setUser: (user: IUser) => dispatch(setUser(user))
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Layout);
